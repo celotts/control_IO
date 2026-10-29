@@ -1,0 +1,99 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-10-22T23:45:00.000Z",
+  "__export_source": "insomnia.desktop.app:v10.0.0",
+  "resources": [
+    {
+      "_id": "wrk_control_io",
+      "_type": "workspace",
+      "name": "Control IO - Planillas SFSD0001",
+      "description": ""
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_control_io",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8000",
+        "api_key": "dev-key-change-me"
+      }
+    },
+    {
+      "_id": "fld_planillas",
+      "_type": "request_group",
+      "parentId": "wrk_control_io",
+      "name": "Planillas"
+    },
+    {
+      "_id": "req_leer_carpeta",
+      "_type": "request",
+      "parentId": "fld_planillas",
+      "name": "Leer planilla desde carpeta sinprocesar",
+      "method": "GET",
+      "url": "{{ _.base_url }}/api/v1/planillas/leer/asistencia_sfera.jpeg",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "_id": "req_health",
+      "_type": "request",
+      "parentId": "wrk_control_io",
+      "name": "Health",
+      "method": "GET",
+      "url": "{{ _.base_url }}/health",
+      "body": {},
+      "headers": [],
+      "parameters": []
+    },
+    {
+      "_id": "req_crear_planilla",
+      "_type": "request",
+      "parentId": "fld_planillas",
+      "name": "Crear planilla (upload)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/api/v1/planillas/",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "name": "file",
+            "value": "",
+            "type": "file",
+            "fileName": ""
+          }
+        ]
+      },
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "_id": "req_listar_planillas",
+      "_type": "request",
+      "parentId": "fld_planillas",
+      "name": "Listar planillas",
+      "method": "GET",
+      "url": "{{ _.base_url }}/api/v1/planillas/",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "value": "{{ _.api_key }}"
+        }
+      ],
+      "parameters": []
+    }
+  ]
+}
